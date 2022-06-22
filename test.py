@@ -118,7 +118,7 @@ def ordenar(A,value,start,final):
 
 
 if __name__ == '__main__':
-    a = sorted([randint(0,100) for a in range(3,79)])
+    a = sorted([randint(0,150) for a in range(3,79)])
     x = ordenar(a,15,0,len(a))
     print(x)
         
