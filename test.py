@@ -100,7 +100,6 @@
 #             j = j - 1
 #         bucket[j + 1] = var
 
-from audioop import reverse
 from random import randint
 
 

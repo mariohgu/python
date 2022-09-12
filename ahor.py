@@ -17,7 +17,7 @@ while miWord!=arrayword:
                 print(miWord)
     else:
         attemp +=1
-        print(f'no es correcto tienes {6-attemp} oportunidades' if attemp<6 else f'INTENTALO DE NUEVO')
+        print(f'No es correcto, tienes {6-attemp} oportunidades' if attemp<6 else f'INTENTALO DE NUEVO')
 
 if arrayword==miWord:
     print("LO LOGRASTE")
