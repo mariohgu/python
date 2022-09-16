@@ -1,0 +1,10 @@
+py Tensorflow\workspace\images\collectedimages\CONVERTIR\aug.py --imgdir=Tensorflow\workspace\images\collectedimages\CONVERTIR\input --labels=Tensorflow\workspace\images\collectedimages\CONVERTIR\labels.txt --numaugs=2
+
+
+py Tensorflow\workspace\images\collectedimages\CONVERTIR\aug.py --numaugs=2
+
+
+matrix = np.array([[0, -1, 0],
+                  [-1, 4, -1],
+                  [0, -1, 0]])
+aug = iaa.Convolve(matrix=matrix)
