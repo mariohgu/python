@@ -17,9 +17,11 @@ class Paciente:
         return f'todo ok con {self.nombres} con dni {self.dni} con año {self.year} y de tipo {self.estado.name}'
     
     def __post_init__(self) -> None:
-        assert len(self.dni)==7,"REVISAR QUE DNI TIENE 7 DIGITOS"
+        assert len(str(self.dni))==7,"REVISAR QUE DNI TIENE 7 DIGITOS"
     
+def run():
+    paciente1 = Paciente("mario",4545453,Estado.ACTIVO,2011)
+    print(paciente1)
 
-paciente1 = Paciente("mario",454545,Estado.ACTIVO,2011)
-print(paciente1)
+if __name__ =='__main__':run()
     
