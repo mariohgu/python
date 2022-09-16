@@ -79,7 +79,10 @@ def run():
     edadWorker = list(map(lambda worker:worker["name"],edadWorker))
     #agregando un termino al diccionario.
     edadIncluida = list(map(lambda worker: worker | {"old":worker["age"]>70},DATA))
-    
+
+    lenguaje = list(filter(lambda filtro:filtro['language']=='python',DATA))
+
+    print (lenguaje)
     print(edadWorker)
     for worker in trabajadores_platzi:
         print(worker)
