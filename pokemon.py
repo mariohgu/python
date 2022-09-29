@@ -61,7 +61,7 @@ Tipos = [
         'FUEGO':0.5,
         
     },
-        {
+    {
         'Tipo':'ELECTRICO',
         "AGUA":2,
         'PLANTA':0.5,
@@ -75,6 +75,9 @@ Tipos = [
 squirtle = pokemon(tipo=tipoPokemon.AGUA,ATQ=100,DEF=40)
 #print(squirtle.tipo.name)
 
+ataque_squir = squirtle.__dict__['ATQ']
+print(ataque_squir)
+
 def peleaPokemon(tipo:str,ATQ:int,tipo2:str,DEF:int):
     if(0<ATQ<=100) and (0<DEF<=100):
         poke = next(filter(lambda tipoPokemon: tipoPokemon['Tipo'] == tipo, Tipos))
@@ -87,7 +90,7 @@ def peleaPokemon(tipo:str,ATQ:int,tipo2:str,DEF:int):
 
     
 peleaPokemon('AGUA',80,'FUEGO',20)
-#print(Tipos[1]['Tipo'])
+print(Tipos[1]['Tipo'])
 
 
     

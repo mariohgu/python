@@ -34,49 +34,58 @@
  
 
 
-def a_dec(num:str):
-    s = 0
-    num = list(num)
-    for i in range(len(num)):
-        j = num.pop()
-        if j == '1':
-            s = s + pow(2,i)
-    print(s)
-#     list_num =list(num)
-#     suma = 0
+# def a_dec(num:str):
+#     s = 0
+#     num = list(num)
+#     for i in range(len(num)):
+#         j = num.pop()
+#         if j == '1':
+#             s = s + pow(2,i)
+#     print(s)
+# #     list_num =list(num)
+# #     suma = 0
     
-#     for valor in range(len(list_num)):
-#         numero = list_num.pop()
-#         if numero =='1':
-#             suma = suma + pow(2,valor)
+# #     for valor in range(len(list_num)):
+# #         numero = list_num.pop()
+# #         if numero =='1':
+# #             suma = suma + pow(2,valor)
 
-#     print(suma)
-
-
+# #     print(suma)
 
 
 
-def nombre(namex:str):
-    nuevo = namex[:namex.find('@')]
-    nuevo = nuevo+'@ceu.es'
+
+
+# def nombre(namex:str):
+#     nuevo = namex[:namex.find('@')]
+#     nuevo = nuevo+'@ceu.es'
     
     
-    print(nuevo)
+#     print(nuevo)
     
 
 
+
+# def run():
+    
+#    # n = input("Dame tu nombre: ")
+#     #nombre(n)
+#     a_dec('01110')
+
+#     # a = [1,2,4,5]
+#     # b = a.copy()
+#     # b = [7,8,9,7]
+#     # print (a,b)
+
+#factorial
+
+def facto(num:int):
+    sum=1
+    for i in range(num,0,-1):
+        sum = i*sum
+    print (sum)
 
 def run():
-    
-   # n = input("Dame tu nombre: ")
-    #nombre(n)
-    a_dec('01110')
-
-    # a = [1,2,4,5]
-    # b = a.copy()
-    # b = [7,8,9,7]
-    # print (a,b)
-
-    
+    facto(4)
  
 if __name__ == '__main__':run()
