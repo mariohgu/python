@@ -1,6 +1,5 @@
 from itertools import chain
 from dataclasses import dataclass,field
-from email.policy import default
 from enum import Enum
 from typing import Optional
 

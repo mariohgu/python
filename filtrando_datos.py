@@ -1,3 +1,6 @@
+from itertools import chain
+
+
 DATA = [
     {
         'name': 'Facundo',
@@ -79,11 +82,16 @@ def run():
     edadWorker = list(map(lambda worker:worker["name"],edadWorker))
     #agregando un termino al diccionario.
     edadIncluida = list(map(lambda worker: worker | {"old":worker["age"]>70},DATA))
+    #mostrando dos valores desde diccionario
+    nombre_edad = list((chain.from_iterable((worker['name'],worker['age']) for worker in DATA if worker['age']>30)))
+    #map para agregar exponentes a la listas
+    nombre_edad = list(map(lambda x: x**2 if type(x)==int else x,nombre_edad))
 
     lenguaje = list(filter(lambda filtro:filtro['language']=='python',DATA))
 
     print (lenguaje)
     print(edadWorker)
+    print(nombre_edad)
     for worker in trabajadores_platzi:
         print(worker)
 
