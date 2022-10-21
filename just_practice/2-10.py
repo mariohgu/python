@@ -5,3 +5,6 @@ def square(number):
 
 number = int(input("dame n: "))
 print(square(number))
+
+#numeros primos
+num3 = [x for x in range(2, 1010) if all(x%y for y in range(2, min(x, 11)))]
