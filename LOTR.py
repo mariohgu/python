@@ -50,6 +50,14 @@ tipos = [
         
     },
         {
+        'Tipo':'FUEGO',
+        "AGUA":0.1,
+        'PLANTA':4,
+        'ELECTRICO':9,
+        'FUEGO':0.3,
+        
+    },
+        {
         'Tipo':'ELECTRICO',
         "AGUA":2,
         'PLANTA':0.5,
@@ -59,9 +67,10 @@ tipos = [
     }
 ]
 
-nombre = next(filter(lambda x:x['Tipo']=='FUEGO',tipos))
-numero = nombre['AGUA']
-print(nombre,numero)
+nombre = list(filter(lambda x:x['Tipo']=='FUEGO',tipos))
+numero = list(map(lambda num:num['AGUA'],nombre))
+print(nombre)
+print(numero)
 
 #if __name__=='__main__':run()
  
