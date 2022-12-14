@@ -19,6 +19,7 @@ listaEmpleados = [
     Empleado("Dolly","CMO",30000)
 ]
 dato = 35000
-minEmpleado = filter(lambda x:x.salario>dato,listaEmpleados)
+minEmpleado = list(filter(lambda x:x.salario>dato,listaEmpleados))
+print(minEmpleado)
 for salario_alto in minEmpleado:
     print(salario_alto)

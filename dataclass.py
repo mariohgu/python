@@ -20,7 +20,7 @@ class Paciente:
         assert len(str(self.dni))==7,"REVISAR QUE DNI TIENE 7 DIGITOS"
     
 def run():
-    paciente1 = Paciente("mario",4545453,Estado.ACTIVO,2011)
+    paciente1 = Paciente("mario",4533453,Estado.ACTIVO,2011)
     print(paciente1)
 
 if __name__ =='__main__':run()
