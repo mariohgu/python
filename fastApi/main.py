@@ -1,7 +1,7 @@
 from enum import Enum
 from fastapi import FastAPI,HTTPException
 from pydantic import BaseModel
-
+#etr
 app = FastAPI()
 
 class Category(Enum):
