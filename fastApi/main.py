@@ -36,12 +36,12 @@ def item_search_id(item_id:int)->Item:
 
 Selection = dict[str, str | float | int | Category | None]
 
-@app.get("/items/")
+@app.get("/items")
 def select_by_data(
     name:str | None = None, 
     price:float | None = None, 
     count:int | None = None, 
-    category:Category | None = None ) -> dict[str, Selection]:
+    category:Category | None = None, ) -> dict[str, Selection]:
     def check_item(item: Item)-> bool:
         return all((
             name is None or item.name == name,
