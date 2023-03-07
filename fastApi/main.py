@@ -1,8 +1,12 @@
 from enum import Enum
 from fastapi import FastAPI,HTTPException
 from pydantic import BaseModel
+<<<<<<< HEAD
 import uvicorn
 
+=======
+#etre2
+>>>>>>> bd7fee07a268ac88cd98476edf5ca52ff486a1c6
 app = FastAPI()
 
 class Category(Enum):
