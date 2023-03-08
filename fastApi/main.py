@@ -1,17 +1,13 @@
 from enum import Enum
 from fastapi import FastAPI,HTTPException
 from pydantic import BaseModel
-<<<<<<< HEAD
 import uvicorn
 
-=======
-#etre2
->>>>>>> bd7fee07a268ac88cd98476edf5ca52ff486a1c6
 app = FastAPI()
 
 class Category(Enum):
     TOOLS = 'tools'
-    CONSUMABLES = 'cosumables'
+    CONSUMABLES = 'consumables'
     
 class Item(BaseModel):
     name:str
@@ -35,27 +31,29 @@ def index() -> dict[str, dict[int, Item]]:
 @app.get('/items/{item_id}')
 def item_search_id(item_id:int)->Item:
     if item_id not in items:
-        raise HTTPException(status_code=404,detail=f'item with {item_id} does not exist')
+        HTTPException(status_code=404,detail=f'item with {item_id} does not exist')
     return items[item_id]
 
-Selection = dict[str, str | float | int | Category | None]
+Selection = dict[str, str | int | float | Category | None]
 
-@app.get("/items")
-def select_by_data(
-    name:str | None = None, 
-    price:float | None = None, 
-    count:int | None = None, 
-    category:Category | None = None, ) -> dict[str, Selection]:
+@app.get("/items/")
+def query_item_by_parameters(
+    name:str | None = None,
+    price:float | None = None,
+    count:int | None = None,
+    category:Category | None = None,) -> dict[str, Selection | list[Item]]:
     def check_item(item: Item)-> bool:
         return all((
             name is None or item.name == name,
             price is None or item.price == price,
-            count is None or item.count == count,
+            count is None or item.count != count,
             category is None or item.category is category,
             
         ))
     selection = [item for item in items.values() if check_item(item)]
-    return {'query':{'name':name,'price':price,'count':count,'category':category,'selection':selection,}}
+    return {
+        'query':{'name':name,'price':price,'count':count,'category':category},'selection':selection,
+        }   
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000)
