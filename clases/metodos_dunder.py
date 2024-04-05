@@ -20,16 +20,18 @@
 # __rshift__: Se ejecuta cuando se desplaza bits a la derecha
 # __and__: Se ejecuta cuando se realiza una operación AND bit a bit
 
-from abc import ABC, abstractclassmethod
+from abc import ABC, abstractmethod
 
 
 class Animales:
 
+    @abstractmethod
     def __init__(self, especie, familia, color):
         self.especie = especie
         self.familia = familia
         self.color = color
 
+    @abstractmethod
     def velocidad(self, velocidad):
         pass
 

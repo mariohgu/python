@@ -1,9 +1,9 @@
-from abc import ABC, abstractclassmethod
+from abc import ABC, abstractmethod
 
 
 # Esta clase no se puede usar para crear objetos, ya que sirve como una plantilla. No se puede instanciar
 class Persona(ABC):
-    @abstractclassmethod
+    @abstractmethod
     def __init__(self, nombre, edad, sexo, actividad):
         self.nombre = nombre
         self.edad = edad
@@ -11,7 +11,7 @@ class Persona(ABC):
         self.actividad = actividad
 
     # definiendo el metodo como abstracto estamos obligando a implementarlo en las clases hijas
-    @abstractclassmethod
+    @abstractmethod
     def hacer_actividad(self):
         pass
 
@@ -29,7 +29,7 @@ class Estudiante(Persona):
         sexo,
         actividad,
     ):
-        Persona.__init__(nombre, edad, sexo, actividad)
+        Persona.__init__(self, nombre, edad, sexo, actividad)
 
     def hacer_actividad(self):
         print(f"Estoy estudiando {self.actividad}")
