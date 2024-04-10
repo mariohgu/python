@@ -37,11 +37,24 @@ class Hotel:
 
     def reservar_habitacion(self, numero):
         for habitacion in self.habitaciones:
-            if not habitacion.ocupada and habitacion.numero == numero:
-                habitacion.reservar()
-                return f"La habitacion {habitacion.numero} ha sido reservada"
-            else:
-                return f"La habitacion {habitacion.numero} no se encuentra disponible"
+            if habitacion.numero == numero:
+                if not habitacion.ocupada:
+                    habitacion.reservar()
+                    return f"La habitacion {habitacion.numero} ha sido reservada"
+                else:
+                    return (
+                        f"La habitacion {habitacion.numero} no se encuentra disponible"
+                    )
+        return f"La habitacion {numero} no existe"
+
+    def liberar_habitacion(self, numero):
+        for habitacion in self.habitaciones:
+            if habitacion.numero == numero:
+                if habitacion.ocupada:
+                    habitacion.liberar()
+                    return f"La habitacion {habitacion.numero} ha sido liberada"
+                else:
+                    return f"La habitacion {habitacion.numero} no se encuentra ocupada"
         return f"La habitacion {numero} no existe"
 
 
@@ -51,3 +64,4 @@ hotel_principal.agregar_habitacion(102, "suite", 200)
 
 
 print(hotel_principal.reservar_habitacion(101))
+print(hotel_principal.liberar_habitacion(101))
