@@ -12,9 +12,9 @@ class Paciente(BaseModel):
 
 
 list_pacientes = [
-    Paciente(nombre="Mario Figueroa", doc=12345678, contacto="Florinda"),
-    Paciente(nombre="Luis Figueroa", doc=87654321, contacto="Leticia"),
-    Paciente(nombre="Luisa Figueroa", doc=87654321, contacto="Marcos"),
+    Paciente(nombre="Mario Figueroa", doc=1234, contacto="Florinda"),
+    Paciente(nombre="Luis Figueroa", doc=8765, contacto="Leticia"),
+    Paciente(nombre="Luisa Figueroa", doc=8965, contacto="Marcos"),
 ]
 
 
@@ -26,3 +26,12 @@ async def root():
 @app.get("/mario")
 async def mario():
     return {"hello": "mario"}
+
+
+@app.get("/pacientes/{doc}")
+async def get_pacientes(doc: int):
+    paciente = list(filter(lambda x: x.doc == doc, list_pacientes))
+    try:
+        return paciente[0]
+    except:
+        return {"error": "paciente no encontrado"}
