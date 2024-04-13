@@ -44,11 +44,37 @@ async def get_pacientes():
 
 
 @app.post("/paciente/")
-async def create_pacientes(paciente: Paciente):
-    if paciente_busqueda(paciente.doc):
+async def create_paciente(paciente: Paciente):
+    if type(paciente_busqueda(paciente.doc)) == Paciente:
         return {"error": "paciente ya existe"}
     list_pacientes.append(paciente)
     return list_pacientes
+
+
+""" {
+  "nombre":"Marcio Farfan", 
+  "doc":9876, "contacto":"Esteban"
+}
+"""
+
+
+@app.put("/paciente/")
+async def update_paciente(paciente: Paciente):
+    for index, paci in enumerate(list_pacientes):
+        if paci.doc == paciente.doc:
+            list_pacientes[index] = paciente
+            return list_pacientes
+    return {"error": "paciente no encontrado"}
+
+
+@app.delete("/paciente/{doc}")
+async def delete_paciente(doc: int):
+    for index, paciente in enumerate(list_pacientes):
+        if paciente.doc == doc:
+            list_pacientes.pop(index)
+            return list_pacientes
+
+    return {"error": "paciente no encontrado"}
 
 
 def paciente_busqueda(doc: int):
