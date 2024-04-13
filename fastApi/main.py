@@ -28,8 +28,30 @@ async def mario():
     return {"hello": "mario"}
 
 
-@app.get("/pacientes/{doc}")
+@app.get("/paciente/{doc}")
 async def get_pacientes(doc: int):
+    return paciente_busqueda(doc)
+
+
+@app.get("/paciente/")
+async def get_pacientes(doc: int):
+    return paciente_busqueda(doc)
+
+
+@app.get("/pacientes/")
+async def get_pacientes():
+    return list_pacientes
+
+
+@app.post("/paciente/")
+async def create_pacientes(paciente: Paciente):
+    if paciente_busqueda(paciente.doc):
+        return {"error": "paciente ya existe"}
+    list_pacientes.append(paciente)
+    return list_pacientes
+
+
+def paciente_busqueda(doc: int):
     paciente = list(filter(lambda x: x.doc == doc, list_pacientes))
     try:
         return paciente[0]
