@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import uvicorn
 
@@ -43,12 +43,12 @@ async def get_pacientes():
     return list_pacientes
 
 
-@app.post("/paciente/")
+@app.post("/paciente/", status_code=201, response_model=Paciente)
 async def create_paciente(paciente: Paciente):
     if type(paciente_busqueda(paciente.doc)) == Paciente:
-        return {"error": "paciente ya existe"}
+        raise HTTPException(status_code=409, detail="paciente ya existe")
     list_pacientes.append(paciente)
-    return list_pacientes
+    return paciente
 
 
 """ {
