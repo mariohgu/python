@@ -2,7 +2,11 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 import uvicorn
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/paciente",
+    tags=["paciente"],
+    responses={404: {"description": "Not found"}},
+)
 
 
 class Paciente(BaseModel):
@@ -18,22 +22,22 @@ list_pacientes = [
 ]
 
 
-@router.get("/paciente/{doc}")
+@router.get("/{doc}")
 async def get_pacientes(doc: int):
     return paciente_busqueda(doc)
 
 
-@router.get("/paciente/")
+@router.get("/")
 async def get_pacientes(doc: int):
     return paciente_busqueda(doc)
 
 
-@router.get("/pacientes/")
+@router.get("/all")
 async def get_pacientes():
     return list_pacientes
 
 
-@router.post("/paciente/", status_code=201, response_model=Paciente)
+@router.post("/", status_code=201, response_model=Paciente)
 async def create_paciente(paciente: Paciente):
     if type(paciente_busqueda(paciente.doc)) == Paciente:
         raise HTTPException(status_code=409, detail="paciente ya existe")
@@ -48,7 +52,7 @@ async def create_paciente(paciente: Paciente):
 """
 
 
-@router.put("/paciente/")
+@router.put("/")
 async def update_paciente(paciente: Paciente):
     for index, paci in enumerate(list_pacientes):
         if paci.doc == paciente.doc:
@@ -57,7 +61,7 @@ async def update_paciente(paciente: Paciente):
     return {"error": "paciente no encontrado"}
 
 
-@router.delete("/paciente/{doc}")
+@router.delete("/{doc}")
 async def delete_paciente(doc: int):
     for index, paciente in enumerate(list_pacientes):
         if paciente.doc == doc:

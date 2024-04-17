@@ -65,9 +65,7 @@ async def current_user(token: str = Depends(oauth)):
     return user
 
 
-app.post("/login")
-
-
+@app.post("/login")
 async def login(form: OAuth2PasswordRequestForm = Depends()):
     user = get_user(form.username)
     if not user:
