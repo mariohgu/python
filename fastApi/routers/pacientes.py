@@ -3,8 +3,8 @@ from pydantic import BaseModel
 import uvicorn
 
 router = APIRouter(
-    prefix="/paciente",
-    tags=["paciente"],
+    prefix="/pacientes",
+    tags=["pacientes"],
     responses={404: {"description": "Not found"}},
 )
 

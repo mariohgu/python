@@ -31,19 +31,26 @@ user_db = {
         "full_name": "John Doe",
         "email": "johndoe@x.com",
         "disabled": True,
-        "password": "12345",
+        "password": "123456",
     },
     "willrogers": {
         "username": "willrogers",
         "full_name": "Will Rogers",
         "email": "willrogers@x.com",
         "disabled": False,
-        "password": "12345",
+        "password": "123457",
     },
 }
 
 
 def get_user(username: str):
+    if username in user_db:
+        return User(**user_db[username])
+    else:
+        return None
+
+
+def get_user_db(username: str):
     if username in user_db:
         return UserDB(**user_db[username])
     else:
@@ -67,7 +74,7 @@ async def current_user(token: str = Depends(oauth)):
 
 @app.post("/login")
 async def login(form: OAuth2PasswordRequestForm = Depends()):
-    user = get_user(form.username)
+    user = get_user_db(form.username)
     if not user:
         raise HTTPException(status_code=400, detail="Incorrect username or password")
     if not form.password == user.password:
